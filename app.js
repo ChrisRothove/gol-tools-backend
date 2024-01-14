@@ -37,9 +37,9 @@ app.use(
 );
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
+// app.set("views", path.join(__dirname, "views"));
 require("dotenv").config();
-app.set("view engine", "jade");
+// app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
