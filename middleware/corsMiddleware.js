@@ -1,5 +1,5 @@
 const corsMiddleware = (req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "true");
+  res.set("Access-Control-Allow-Origin", "*");
   next();
 };
 
