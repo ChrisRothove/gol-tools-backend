@@ -13,7 +13,11 @@ var app = express();
 // setup CORS
 var cors = require("cors");
 
-var allowedOrigins = ["http://localhost:5173"];
+var allowedOrigins = [
+  "http://localhost:5173",
+  "https://gol-tools-backend.vercel.app/",
+  "https://gol-tools.vercel.app/",
+];
 
 app.use(
   cors({
