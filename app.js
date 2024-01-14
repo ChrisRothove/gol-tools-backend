@@ -38,6 +38,8 @@ app.use(
 
 require("dotenv").config();
 
+app.options("*", cors()); // include before other routes
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
