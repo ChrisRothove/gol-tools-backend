@@ -34,7 +34,11 @@ async function login(req, res, next) {
   const user_name = req.body.user_name;
   const password = req.body.password;
   const key = req.body.auto_login_key || "";
-  console.log("Login; ", res.get("Access-Control-Allow-Origin"), req.hostname);
+  console.log(
+    "Login; ",
+    res.get("Access-Control-Allow-Origin"),
+    req.get("origin")
+  );
 
   const userWithPassword = await userService
     .readByUsername(user_name)
