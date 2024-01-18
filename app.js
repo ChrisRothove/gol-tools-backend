@@ -39,7 +39,6 @@ app.use(cors());
 require("dotenv").config();
 
 // app.options("*", cors()); // include before other routes
-console.log("ping");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

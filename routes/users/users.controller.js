@@ -39,6 +39,7 @@ async function login(req, res, next) {
   const userWithPassword = await userService.readByUsername(user_name);
   const isPasswordAccurate = userWithPassword?.password === password;
   const isKeywordAccurate = userWithPassword?.auto_login_key === key;
+  console.log("userWithPassword; ", userWithPassword);
 
   if (!userWithPassword) {
     res.status(500).json({ error: `user ${user_name} does not exist.` });
