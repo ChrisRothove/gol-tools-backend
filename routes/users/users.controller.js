@@ -36,7 +36,9 @@ async function login(req, res, next) {
   const key = req.body.auto_login_key || "";
   console.log("Login; ", user_name, password, key);
 
-  const userWithPassword = await userService.readByUsername(user_name);
+  const userWithPassword = await userService
+    .readByUsername(user_name)
+    .catch((err) => res.status(500).json({ error: err }));
   const isPasswordAccurate = userWithPassword?.password === password;
   const isKeywordAccurate = userWithPassword?.auto_login_key === key;
   console.log("userWithPassword; ", userWithPassword);
