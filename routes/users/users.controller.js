@@ -34,7 +34,7 @@ async function login(req, res, next) {
   const user_name = req.body.user_name;
   const password = req.body.password;
   const key = req.body.auto_login_key || "";
-  console.log("Login; ", user_name, password, key);
+  console.log("Login; ", res.headers);
 
   const userWithPassword = await userService
     .readByUsername(user_name)
