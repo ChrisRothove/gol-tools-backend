@@ -12,12 +12,8 @@ var app = express();
 
 // setup CORS
 var cors = require("cors");
-
-var allowedOrigins = [
-  "http://localhost:5173",
-  "https://gol-tools-backend.vercel.app/",
-  "https://gol-tools.vercel.app/",
-];
+const errorHandler = require("./errors/errorHandler");
+const notFound = require("./errors/notFound");
 
 app.use(cors());
 
@@ -46,18 +42,9 @@ app.use("/", (req, res) => {
 });
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+app.use(notFound);
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-  console.log(err);
-  // render the error page
-  res.status(err.status || 500);
-});
+app.use(errorHandler);
 
 module.exports = app;
