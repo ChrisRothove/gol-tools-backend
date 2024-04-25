@@ -6,7 +6,6 @@ var logger = require("morgan");
 require("dotenv").config();
 
 var usersRouter = require("./routes/users/users.router");
-var corsMiddleware = require("./middleware/corsMiddleware");
 
 var app = express();
 
@@ -25,15 +24,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://gol-tools.vercel.app");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.use("/users", usersRouter);
 
