@@ -34,18 +34,12 @@ async function login(req, res, next) {
   const user_name = req.body.user_name;
   const password = req.body.password;
   const key = req.body.auto_login_key || "";
-  console.log(
-    "Login; ",
-    res.get("Access-Control-Allow-Origin"),
-    req.get("origin")
-  );
 
   const userWithPassword = await userService
     .readByUsername(user_name)
     .catch((err) => res.status(500).json({ error: err }));
   const isPasswordAccurate = userWithPassword?.password === password;
   const isKeywordAccurate = userWithPassword?.auto_login_key === key;
-  console.log("userWithPassword; ", userWithPassword);
 
   if (!userWithPassword) {
     res.status(500).json({ error: `user ${user_name} does not exist.` });
@@ -58,6 +52,7 @@ async function login(req, res, next) {
         auto_login_key: createKey(),
       });
     }
+
     const user = await userService.read(userWithPassword._id);
     res.status(200).json({ data: user });
   } else {
