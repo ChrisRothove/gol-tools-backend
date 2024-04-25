@@ -34,6 +34,7 @@ async function login(req, res, next) {
   const user_name = req.body.user_name;
   const password = req.body.password;
   const key = req.body.auto_login_key || "";
+  console.log(process.env.MONGO_USER_DATABASE);
 
   const userWithPassword = await userService
     .readByUsername(user_name)
