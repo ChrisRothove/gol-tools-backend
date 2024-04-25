@@ -3,7 +3,6 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-require("dotenv").config();
 
 var usersRouter = require("./routes/users/users.router");
 
@@ -14,9 +13,12 @@ var cors = require("cors");
 const errorHandler = require("./errors/errorHandler");
 const notFound = require("./errors/notFound");
 
-app.use(cors());
+// load the .env if it isn't production
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
-require("dotenv").config();
+app.use(cors());
 
 app.options("*", cors()); // include before other routes
 app.use(logger("dev"));
